@@ -8,7 +8,29 @@
      
       <name>Twitter Public API</name>
       <url>https://github.com/lin1000/TwitterPublicAPI</url>
-     
+
+
+ <build>
+  <plugins>
+   <plugin>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>2.0.2</version>
+    <configuration>
+      <source>1.8</source>
+      <target>1.8</target>
+    </configuration>
+   </plugin>
+   <plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>exec-maven-plugin</artifactId>
+    <configuration>
+      <mainClass>demo.lin1000.twitter.GetTwitterFollower</mainClass>
+    </configuration>
+   </plugin>
+  </plugins>
+ </build>
+
+
     <repositories>
       <!--other repositories if any-->
       <repository>
@@ -22,8 +44,33 @@
       <dependencies>
         <dependency>
             <groupId>demo.lin1000.twitter</groupId>
-            <artifactId>mylib</artifactId>
+            <artifactId>db2jcc4</artifactId>
             <version>1.0</version>
         </dependency>
+        <dependency>
+           <groupId>org.twitter4j</groupId>
+           <artifactId>twitter4j-core</artifactId>
+           <version>[4.0,)</version>
+       </dependency>
+        <!--        <dependency>
+            <groupId>demo.lin1000.twitter</groupId>
+            <artifactId>twitter4j-async</artifactId>
+            <version>1.0</version>
+        </dependency>
+                <dependency>
+            <groupId>demo.lin1000.twitter</groupId>
+            <artifactId>twitter4j-core</artifactId>
+            <version>1.0</version>
+        </dependency>
+                <dependency>
+            <groupId>demo.lin1000.twitter</groupId>
+            <artifactId>twitter4j-examples</artifactId>
+            <version>1.0</version>
+        </dependency>
+                <dependency>
+            <groupId>demo.lin1000.twitter</groupId>
+            <artifactId>twitter4j-media-support</artifactId>
+            <version>1.0</version>
+        </dependency>-->
       </dependencies>
 </project>
