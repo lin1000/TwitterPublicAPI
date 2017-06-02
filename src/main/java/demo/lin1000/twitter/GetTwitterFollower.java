@@ -233,7 +233,7 @@ public class GetTwitterFollower {
 				try {
 					log.info("attempt to shutdown executor");
 					executor.shutdown();
-					executor.awaitTermination(5, TimeUnit.SECONDS);
+					executor.awaitTermination(5, TimeUnit.HOURS);
 				}
 				catch (InterruptedException e) {
 					log.severe("tasks interrupted");
