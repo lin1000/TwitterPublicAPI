@@ -1,42 +1,40 @@
 package demo.lin1000.twitter;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
 
 public class Util {
 
-	private static String consumerKey=null;
+	// get logger
+	static Logger log = Logger.getLogger(Util.class.getName());
+
+	private static int numOfKeys;
+
+	private static ArrayList<String> consumerKey=new ArrayList<String>();
 	
-	private static String consumerSecret=null;
+	private static ArrayList<String> consumerSecret=new ArrayList<String>();
 	
-	private static String accessToken=null;
+	private static ArrayList<String> accessToken=new ArrayList<String>();
 	
-	private static String accessTokenSecret=null;
-	
-//	private static String dbUser=null;
-	
-//	private static String dbPwd=null;
+	private static ArrayList<String> accessTokenSecret=new ArrayList<String>();
 	
 	public static void loadConfigProperties()
 	{
 		Properties properties = new Properties();
 		InputStream inputStream = null;
 		try {
-			// String resourceName="target/classes/twitter4j.properties";
-			// String protertyFilePath = (resourceName);
-			// inputStream = new FileInputStream(protertyFilePath);
-			// properties.load(inputStream);			
-			
+						
 			String resourceName1="twitter4j.properties";
 			ClassLoader loader = Thread.currentThread().getContextClassLoader();
 			InputStream resourceStream = loader.getResourceAsStream(resourceName1);
-			System.out.println(resourceStream);
+			log.info(resourceStream.toString());
 			properties.load(resourceStream);		
 
 		} catch (IOException e) {
-			System.err.println("Cannot Find twitter4j.properties");
+			log.severe("Cannot Find twitter4j.properties");
 		} finally {
 			try {
 				if (inputStream != null) {
@@ -47,40 +45,44 @@ public class Util {
 			}
 		}
 		
-		consumerKey = properties.getProperty("oauth.consumerKey");
-		consumerSecret = properties.getProperty("oauth.consumerSecret");
-		accessToken = properties.getProperty("oauth.accessToken");
-		accessTokenSecret = properties.getProperty("oauth.accessTokenSecret");
+		numOfKeys = Integer.valueOf(properties.getProperty("number.of.keys.activate"));
 
-		System.out.println("consumerKey="+consumerKey);
+		for (int i=0; i<numOfKeys ;i++){
+			log.info("loading twitter api ket sets ");
+			consumerKey.add(properties.getProperty("oauth.consumerKey."+(i+1)));
+			consumerSecret.add(i,properties.getProperty("oauth.consumerSecret."+(i+1)));
+			accessToken.add(i,properties.getProperty("oauth.accessToken."+(i+1)));
+			accessTokenSecret.add(i,properties.getProperty("oauth.accessTokenSecret."+(i+1)));
+
+			log.info("consumerKey["+i+"]="+consumerKey.get(i));
+			log.info("consumerSecret["+i+"]="+consumerSecret.get(i));
+			log.info("accessToken["+i+"]="+accessToken.get(i));
+			log.info("accessTokenSecret["+i+"]="+accessTokenSecret.get(i));
+		}
 
 	}
-	
-//	public static String getDBUser()
-//	{
-//		return dbUser;
-//	}
-//	public static String getDBPwd()
-//	{
-//		return dbPwd;
-//	}
-	public static String getConsumerKey()
-	{
-		return consumerKey;
-	}
-	public static String getConsumerSecret()
-	{
-		return consumerSecret;
+
+	public static int getNumOfKeys(){
+		return numOfKeys;
 	}
 	
-	public static String getAccessToken()
+	public static String getConsumerKey(int index)
 	{
-		return accessToken;
+		return consumerKey.get(index);
+	}
+	public static String getConsumerSecret(int index)
+	{
+		return consumerSecret.get(index);
 	}
 	
-	public static String getAccessTokenSecret()
+	public static String getAccessToken(int index)
 	{
-		return accessTokenSecret;
+		return accessToken.get(index);
+	}
+	
+	public static String getAccessTokenSecret(int index)
+	{
+		return accessTokenSecret.get(index);
 	}
 
 }
