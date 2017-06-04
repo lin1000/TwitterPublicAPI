@@ -18,4 +18,5 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 
 ## Language 
 
-Java
+Java (Concurrency, Twitter API)
+Python (Data Pre-processing)
