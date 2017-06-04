@@ -1,4 +1,4 @@
-# This is a place for Public Twitter API experiments
+# From Twiiter Public Twitter API to Social Network Analysis Experiements
 
  
 ##   Configurations
@@ -14,9 +14,10 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 - [x] (python) Compose a gnip query rule with interested accounts that aligning with rule limitations
 - [x] (python) Create a historical job that can sent to gnip
 - [x] (python) Generate csv files group by rule tags 
-
+- [ ] (spark) To accerelate processing speed by parallelizing
+- [ ] (spark) Speark GraphX to analyze the social networking of random sampled followers
 
 ## Language 
 
 Java (Concurrency, Twitter API)
-Python (Data Pre-processing)
+Python (Data Processing)
