@@ -27,3 +27,8 @@ target
 #psi
 *.csv
 *.json
+
+#IDE
+*.prefs
+.project
+.classpath
