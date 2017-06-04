@@ -10,8 +10,9 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 - [x] Given twitter handle, you can find the followers' handle list
 - [x] Twitter API Key Resoure Control by managing the concurrency and locking mechanism to maximize the rate litmit utilization
 - [x] Executor Thread pool to submit concurrent tasks
-- [ ] (python) Random Sampling Account and then output as csv file in 01SamplingAccount folder
-- [ ] (python) Compose a gnip query rule with interested accounts that aligning with rule limitations
+- [x] (python) Random Sampling Account and then output as csv file in 01SamplingAccount folder
+- [x] (python) Compose a gnip query rule with interested accounts that aligning with rule limitations
+- [x] (python) Create a historical job that can sent to gnip
 
 
 ## Language 
