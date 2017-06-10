@@ -153,3 +153,6 @@ class FIELDS:
                 out.append("")
         return out
 
+    def toCSVLine():
+        return "\"".join(self.toList())
+
