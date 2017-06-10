@@ -192,5 +192,5 @@ class FIELDS:
                 out.append(self.USER_MENTIONS[i].encode("utf-8"))
             else:
                 out.append("")        
-        return "\"".join(out)
+        return ",".join(out)
 
