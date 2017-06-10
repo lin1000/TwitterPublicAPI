@@ -4,25 +4,19 @@ import glob
 from os.path import basename
 from os.path import splitext
 import json 
-
-debug_limit = 1
-debug_count = 0
+from pyspark.sql import SQLContext, Row
 
 def test_if_dict_contain_rule_tag(mydict,rule_tag):
-   print "comparing mydict(%s) with %s" % (len(mydict),rule_tag)
+   #print "comparing mydict(%s) with %s" % (len(mydict),rule_tag)
    for tagline in mydict:
  	if("tag" in tagline and tagline['tag']==rule_tag) :
-                print "TAG FOUND"
+                #print "TAG FOUND"
 		return True
-   print "TAG MISS"
+   #print "TAG MISS"
    return False
-
 
 def group_by_rule_tag(rule_tag_list=[]):
  
-    global debug_limit
-    global debug_count    
-
 #    datafiles = "../python/05GNIPData/*.json.gz"
     datafiles = "../python/05GNIPData/20160601-20170601_avgg5v796n_2016_06_01_00_*_activities.json.gz"
     filenames =  glob.glob(datafiles)
@@ -47,7 +41,13 @@ def group_by_rule_tag(rule_tag_list=[]):
         groupByRuleTag = dataRDD.filter(lambda t: "body" in t).filter(lambda t: test_if_dict_contain_rule_tag(t['gnip']['matching_rules'],rule_tag))
         
  	#save filtered result into files
-	groupByRuleTag.saveAsTextFile(outputfilepath + "/" + rule_tag)
+	#groupByRuleTag.saveAsTextFile(outputfilepath + "/" + rule_tag)
+
+        #load as sparkSQL dataframe
+	df = sqlContext.read.json(groupByRuleTag)
+	df.registerTempTable(rule_tag)
+	df_result = sqlContext.sql("SELECT _corrupt_record as spark_tweet FROM "+rule_tag)
+	df_result.write.json(rule_tag+".json")
 
 	#groupByRuleTag_list = [ t for t in groupByRuleTag.collect()]	
         #for tag in groupByRuleTag_list:
@@ -80,5 +80,6 @@ def group_by_rule_tag(rule_tag_list=[]):
 if __name__=='__main__':
     conf = SparkConf().setAppName("Read entire json activities app by pyspark")
     sc = SparkContext(conf=conf)
+    sqlContext = SQLContext(sc)
     group_by_rule_tag(['modelpress','kenichiromogi','HikaruIjuin'])
     sc.stop()
