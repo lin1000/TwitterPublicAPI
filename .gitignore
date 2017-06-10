@@ -27,3 +27,9 @@ target
 #psi
 *.csv
 *.json
+
+#IDE
+*.prefs
+.project
+.classpath
+src/main/resources/twitter4j\.properties
