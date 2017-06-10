@@ -183,7 +183,7 @@ class FIELDS:
             else:
                 out.append('""')
         for i in range(0, 10):
-            if len('"'+self.URL_MENTIONS) > i:
+            if len(self.URL_MENTIONS) > i:
                 out.append('"'+self.URL_MENTIONS[i].encode("utf-8")+'"')
             else:
                 out.append('""')
