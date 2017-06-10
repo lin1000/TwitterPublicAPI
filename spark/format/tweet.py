@@ -160,37 +160,37 @@ class FIELDS:
         out.append('"'+self.POST_TIMESTAMP.encode("utf-8")+'"')
         out.append('"'+self.URL.encode("utf-8")+'"')
         out.append('"'+str(self.IS_COMMENT)+'"')
-        out.append(self.CONTENT.encode("utf-8"))
-        out.append(self.LANGUAGE.encode("utf-8"))
-        out.append(self.LOCATION_NAME.encode("utf-8"))
-        out.append(self.COUNTRY_CODE.encode("utf-8"))
-        out.append(self.GEO_COORDINATES.encode("utf-8"))
-        out.append(self.AUTHOR_ID.encode("utf-8"))
-        out.append(self.AUTHOR_NAME.encode("utf-8"))
-        out.append(self.AUTHOR_NICKNAME.encode("utf-8"))
-        out.append(self.AUTHOR_URL.encode("utf-8"))
-        out.append(self.AUTHOR_AVATAR_URL.encode("utf-8"))
-        out.append(self.AUTHOR_LOCATION.encode("utf-8"))
-        out.append(str(self.FRIENDS_COUNT))
-        out.append(str(self.FOLLOWERS_COUNT))
-        out.append(str(self.KLOUT_SCORE))
-        out.append(str(self.FAVORITES_COUNT))
-        out.append(str(self.LISTED_COUNT))
-        out.append(self.IN_REPLAT_TO_URL.encode("utf-8"))
+        out.append('"'+self.CONTENT.encode("utf-8")+'"')
+        out.append('"'+self.LANGUAGE.encode("utf-8")+'"')
+        out.append('"'+self.LOCATION_NAME.encode("utf-8")+'"')
+        out.append('"'+self.COUNTRY_CODE.encode("utf-8")+'"')
+        out.append('"'+self.GEO_COORDINATES.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_ID.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_NAME.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_NICKNAME.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_URL.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_AVATAR_URL.encode("utf-8")+'"')
+        out.append('"'+self.AUTHOR_LOCATION.encode("utf-8")+'"')
+        out.append('"'+str(self.FRIENDS_COUNT)+'"')
+        out.append('"'+str(self.FOLLOWERS_COUNT)+'"')
+        out.append('"'+str(self.KLOUT_SCORE)+'"')
+        out.append('"'+str(self.FAVORITES_COUNT)+'"')
+        out.append('"'+str(self.LISTED_COUNT)+'"')
+        out.append('"'+self.IN_REPLAT_TO_URL.encode("utf-8")+'"')
         for i in range(0, 10):
             if len(self.HASH_TAGS) > i:
-                out.append(self.HASH_TAGS[i].encode("utf-8"))
+                out.append('"'+self.HASH_TAGS[i].encode("utf-8")+'"')
             else:
-                out.append("")
+                out.append('""')
         for i in range(0, 10):
-            if len(self.URL_MENTIONS) > i:
-                out.append(self.URL_MENTIONS[i].encode("utf-8"))
+            if len('"'+self.URL_MENTIONS) > i:
+                out.append('"'+self.URL_MENTIONS[i].encode("utf-8")+'"')
             else:
-                out.append("")
+                out.append('""')
         for i in range(0, 10):
             if len(self.USER_MENTIONS) > i:
-                out.append(self.USER_MENTIONS[i].encode("utf-8"))
+                out.append('"'+self.USER_MENTIONS[i].encode("utf-8")+'"')
             else:
-                out.append("")        
+                out.append('""')        
         return ",".join(out)
 
