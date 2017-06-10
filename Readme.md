@@ -14,8 +14,9 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 - [x] (python) Compose a gnip query rule with interested accounts that aligning with rule limitations
 - [x] (python) Create a historical job that can sent to gnip
 - [x] (python) Generate csv files group by rule tags 
-- [ ] (spark) To accerelate processing speed by parallelizing
+- [ ] (spark) Generate json files group by rule tags (accerelate processing speed by parallelizing)
 - [ ] (spark) Speark GraphX to analyze the social networking of random sampled followers
+- [ ] (python) To parse json files into csv files with selected fields.
 
 ## Language 
 
