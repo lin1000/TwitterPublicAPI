@@ -62,18 +62,18 @@ def gnip_2_csv(gniptweet):
         if gniptweet.has_key('location'):
             if gniptweet['location'].has_key('geo'):
                 if gniptweet['location']['geo'] is not None:
-        if gniptweet['location']['geo'].has_key('coordinates') and gniptweet['location']['geo']['type'].find('Polygon') != -1:
-            xaix = (gniptweet['location']['geo']['coordinates'][0][0][0] +
-                    gniptweet['location']['geo']['coordinates'][0][1][0] +
-                    gniptweet['location']['geo']['coordinates'][0][2][0] +
-                    gniptweet['location']['geo']['coordinates'][0][3][0]) / 4
-            yaix = (gniptweet['location']['geo']['coordinates'][0][0][1] +
-                    gniptweet['location']['geo']['coordinates'][0][1][1] +
-                    gniptweet['location']['geo']['coordinates'][0][2][1] +
-                    gniptweet['location']['geo']['coordinates'][0][3][1]) / 4
-            tweet.GEO_COORDINATES = str(xaix) + ',' + str(yaix)
-        else:
-            tweet.GEO_COORDINATES = ''
+     		   if gniptweet['location']['geo'].has_key('coordinates') and gniptweet['location']['geo']['type'].find('Polygon') != -1:
+       		    	xaix = (gniptweet['location']['geo']['coordinates'][0][0][0] +
+                   	gniptweet['location']['geo']['coordinates'][0][1][0] +
+              		gniptweet['location']['geo']['coordinates'][0][2][0] +
+                    	gniptweet['location']['geo']['coordinates'][0][3][0]) / 4
+            		yaix = (gniptweet['location']['geo']['coordinates'][0][0][1] +
+                    	gniptweet['location']['geo']['coordinates'][0][1][1] +
+                    	gniptweet['location']['geo']['coordinates'][0][2][1] +
+                    	gniptweet['location']['geo']['coordinates'][0][3][1]) / 4
+            		tweet.GEO_COORDINATES = str(xaix) + ',' + str(yaix)
+    		   else:
+           		tweet.GEO_COORDINATES = ''
 
     # Author
     if gniptweet.has_key('actor') and gniptweet['actor'].has_key('id'):
@@ -153,7 +153,7 @@ def gnip_2_csv(gniptweet):
             if cnt >= 10:
                 break
 
-    return tweet.toList()    
+    return tweet.toCSVLine()    
 
 def test_if_dict_contain_rule_tag(mydict,rule_tag):
    #print "comparing mydict(%s) with %s" % (len(mydict),rule_tag)
@@ -166,8 +166,8 @@ def test_if_dict_contain_rule_tag(mydict,rule_tag):
 
 def group_by_rule_tag(rule_tag_list=[]):
  
-#    datafiles = "../python/05GNIPData/*.json.gz"
-    datafiles = "../python/05GNIPData/20160601-20170601_avgg5v796n_2016_06_01_00_*_activities.json.gz"
+    datafiles = "../python/05GNIPData/*.json.gz"
+#    datafiles = "../python/05GNIPData/20160601-20170601_avgg5v796n_2016_06_01_00_*_activities.json.gz"
     filenames =  glob.glob(datafiles)
     outputfilepath = "../spark/06GNIPDataGroupByRuleTag/"
 
@@ -189,14 +189,14 @@ def group_by_rule_tag(rule_tag_list=[]):
     	#groupByRuleTag = dataRDD.filter(lambda t: "body" in t).map(lambda t : (t['gnip']['matching_rules'][0]['tag'],t)).groupBy(lambda (k,vs): k,1)
         groupByRuleTag = dataRDD.filter(lambda t: "body" in t).filter(lambda t: test_if_dict_contain_rule_tag(t['gnip']['matching_rules'],rule_tag)).map(lambda t: gnip_2_csv(t))
         
- 	    #save filtered result into files
-	    groupByRuleTag.saveAsTextFile(outputfilepath + "/" + rule_tag)
+ 	#save filtered result into files
+	groupByRuleTag.coalesce(1).saveAsTextFile(outputfilepath + "/" + rule_tag)
 
     #load as sparkSQL dataframe
-	df = sqlContext.read.json(groupByRuleTag)
-	df.registerTempTable(rule_tag)
-	df_result = sqlContext.sql("SELECT _corrupt_record as spark_tweet FROM "+rule_tag)
-	df_result.write.json(rule_tag+".json")
+	#df = sqlContext.read.json(groupByRuleTag)
+	#df.registerTempTable(rule_tag)
+	#df_result = sqlContext.sql("SELECT _corrupt_record as spark_tweet FROM "+rule_tag)
+	#df_result.write.json(rule_tag+".json")
 
 	#groupByRuleTag_list = [ t for t in groupByRuleTag.collect()]	
     #for tag in groupByRuleTag_list:
