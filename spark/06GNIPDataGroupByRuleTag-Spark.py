@@ -1,18 +1,41 @@
 import sys
 from pyspark import SparkContext, SparkConf
+import glob
+from os.path import basename
+from os.path import splitext 
 
-dataFile =  "../python/05GNIPData/20160601-20170601_avgg5v796n_2016_06_01_00_00_activities.json.gz"
+debug_limit = 1
+debug_count = 0
 
-conf = SparkConf().setAppName("Read A sample json activities app")
-sc = SparkContext(conf=conf)
+def group_by_rule_tag(rule_tag_list=[]):
+ 
+    global debug_limit
+    global debug_count    
 
-dataRDD = sc.textFile(dataFile).cache()
+    datafiles = "../python/05GNIPData/*.json.gz"
 
-print dataRDD.take(10)
+    filenames =  glob.glob(datafiles)
+    outputfilepath = "./06GNIPDataGroupByRuleTag/"
 
-numA = dataRDD.filter(lambda s: 'tony' in s).count()
-numB = dataRDD.filter(lambda s: 'mary' in s).count()
+    dataRDD = sc.textFile(datafiles)
 
-print "Lines with tony : %s , lines with mary: %s" % (numA,numB)
+    print dataRDD.count()
 
-sc.stop()
+    group_by_rule_tags_json = {u'group_by_rule_tags': [] } 
+
+#    for filename in filenames:
+#        base = basename(filename)
+#        (fname,extname) = splitext(base)
+#	print "Preparing to load %s" % (base)
+
+#	dataRDD = sc.textFile(datafiles)
+#	print dataRDD.take(1)
+	#numA = dataRDD.filter(lambda s: 'tony' in s).count()
+	#numB = dataRDD.filter(lambda s: 'mary' in s).count()
+	#print "Lines with tony : %s , lines with mary: %s" % (numA,numB)
+
+if __name__=='__main__':
+    conf = SparkConf().setAppName("Read entire json activities app by pyspark")
+    sc = SparkContext(conf=conf)
+    group_by_rule_tag(['modelpress','kenichiromogi','HikaruIjuin'])
+    sc.stop()
