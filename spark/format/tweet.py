@@ -155,11 +155,11 @@ class FIELDS:
 
     def toCSVLine(self):
         out = []
-        out.append(self.DOCUMENT_ID.encode("utf-8"))
-        out.append(self.SOURCE_NAME.encode("utf-8"))
-        out.append(self.POST_TIMESTAMP.encode("utf-8"))
-        out.append(self.URL.encode("utf-8"))
-        out.append(str(self.IS_COMMENT))
+        out.append('"'+self.DOCUMENT_ID.encode("utf-8")+'"')
+        out.append('"'+self.SOURCE_NAME.encode("utf-8")+'"')
+        out.append('"'+self.POST_TIMESTAMP.encode("utf-8")+'"')
+        out.append('"'+self.URL.encode("utf-8")+'"')
+        out.append('"'+str(self.IS_COMMENT)+'"')
         out.append(self.CONTENT.encode("utf-8"))
         out.append(self.LANGUAGE.encode("utf-8"))
         out.append(self.LOCATION_NAME.encode("utf-8"))
