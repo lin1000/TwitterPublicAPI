@@ -1,3 +1,9 @@
-*
 !.gitignore
 !.py
+
+*.log
+#spark artificat
+metastore_db
+spark-warehouse
+derby.log
+

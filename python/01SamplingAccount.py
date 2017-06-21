@@ -6,7 +6,7 @@ import glob
 from os.path import basename
 from os.path import splitext 
 
-filenames =  glob.glob("../output/collect-follower-day2/*.csv")
+filenames =  glob.glob("../output/*.csv")
 
 for filename in filenames:
     base = basename(filename)
