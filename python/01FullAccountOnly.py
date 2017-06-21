@@ -6,7 +6,7 @@ import glob
 from os.path import basename
 from os.path import splitext 
 
-filenames =  glob.glob("../output/*.csv")
+filenames =  glob.glob("../output/collect-follower-day2/*.csv")
 
 for filename in filenames:
     base = basename(filename)
@@ -23,13 +23,11 @@ for filename in filenames:
            cnt += 1
            print(cnt) 
            if(len(row[0].split(","))==2 and len(row[2].split(","))==1):
-                if(int(row[2])>=20):
-                    handle = row[0].split(",")[1]
-                    status_count = int(row[2])
-                    mydict[handle]=status_count
+                handle = row[0].split(",")[1]
+                status_count = int(row[2])
+                mydict[handle]=status_count
 
     sorted_mydict_as_list = sorted(mydict.items(), key=lambda x: x[1],reverse=True)
-
 
     with open("01FullAccount/"+ outputfilename, 'w') as outfile:
         writer = csv.writer(outfile)
