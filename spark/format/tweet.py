@@ -160,7 +160,7 @@ class FIELDS:
         out.append('"'+self.POST_TIMESTAMP.encode("utf-8")+'"')
         out.append('"'+self.URL.encode("utf-8")+'"')
         out.append('"'+str(self.IS_COMMENT)+'"')
-        out.append('"'+self.CONTENT.encode("utf-8")+'"')
+        out.append('"'+self.CONTENT.replace('"','""').encode("utf-8")+'"')
         out.append('"'+self.LANGUAGE.encode("utf-8")+'"')
         out.append('"'+self.LOCATION_NAME.encode("utf-8")+'"')
         out.append('"'+self.COUNTRY_CODE.encode("utf-8")+'"')
