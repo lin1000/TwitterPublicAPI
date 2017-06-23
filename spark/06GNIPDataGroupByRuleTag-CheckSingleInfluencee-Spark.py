@@ -168,9 +168,9 @@ def group_by_rule_tag(rule_tag_list=[]):
     filteredResult = dataRDD.filter(lambda t: "body" in t).filter(lambda t: t['actor']['preferredUsername']=='kjs1261235').map(lambda t: gnip_2_csv(t))
         
     #save filtered result into files
-    filteredResult.saveAsTextFile(outputfilepath + "/" + "kjs1261235")
+    #filteredResult.saveAsTextFile(outputfilepath + "/" + "kjs1261235")
 
-    print dataRDD.count()
+    print filteredResult.count()
 
 if __name__=='__main__':
     conf = SparkConf().setAppName("Read entire json activities and Check on a single influencee")
