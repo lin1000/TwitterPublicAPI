@@ -6,6 +6,7 @@ from os.path import splitext
 import json 
 from pyspark.sql import SQLContext
 import format.tweet as tw
+import argparse
 
 def gnip_2_csv(gniptweet):
 
@@ -155,26 +156,35 @@ def gnip_2_csv(gniptweet):
 
     return tweet.toCSVLine()    
 
-def group_by_rule_tag(rule_tag_list=[]):
+def check_single_influencee(twitterhandle):
  
     datafiles = "../python/05GNIPData/*.json.gz"
-    filenames =  glob.glob(datafiles)
     outputfilepath = "../spark/06GNIPDataGroupByRuleTag/"
 
     dataRDD = sc.textFile(datafiles).map(lambda x : json.loads(x))
 
     print "Loaded %s json records" % (dataRDD.count())
 
-    filteredResult = dataRDD.filter(lambda t: "body" in t).filter(lambda t: t['actor']['preferredUsername']=='kjs1261235').map(lambda t: gnip_2_csv(t))
+    filteredResult = dataRDD.filter(lambda t: "body" in t).filter(lambda t: t['actor']['preferredUsername']=='twitterhandle').map(lambda t: gnip_2_csv(t))
         
     #save filtered result into files
-    #filteredResult.saveAsTextFile(outputfilepath + "/" + "kjs1261235")
+    #filteredResult.saveAsTextFile(outputfilepath + "/" + "twitterhandle")
 
     print filteredResult.count()
 
 if __name__=='__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--twitterhandle", dest='twitterhandle',default=None, help="twitterhandle to be extrcted")
+    args = parser.parse_args()
+    if(args.twitterhandle is None):
+        print "twitter handle is not specified, do nothing and exit."
+        parser.print_help()
+        sys.exit(1)
+    else:
+        print "twitter handle is {}".format(args.twitterhandle)
+ 
     conf = SparkConf().setAppName("Read entire json activities and Check on a single influencee")
     sc = SparkContext(conf=conf)
     sqlContext = SQLContext(sc)
-    group_by_rule_tag(['modelpress','kenichiromogi','HikaruIjuin'])
+    check_single_influencee(args.twitterhandle)
     sc.stop()

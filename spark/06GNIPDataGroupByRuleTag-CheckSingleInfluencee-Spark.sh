@@ -1,1 +1,1 @@
-nohup spark-submit --master "local[*]" --executor-memory 512M --total-executor-cores 80 06GNIPDataGroupByRuleTag-CheckSingleInfluencee-Spark.py > 06GNIPDataGroupByRuleTag-CheckSingleInfluencee-Spark.log 2>&1 &
+nohup spark-submit --master "local[*]" --executor-memory 512M --total-executor-cores 80 06GNIPDataGroupByRuleTag-CheckSingleInfluencee-Spark.py $1 > 06GNIPDataGroupByRuleTag-CheckSingleInfluencee-Spark.log 2>&1 &
