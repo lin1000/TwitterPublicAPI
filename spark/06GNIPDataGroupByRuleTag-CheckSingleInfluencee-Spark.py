@@ -165,10 +165,10 @@ def check_single_influencee(twitterhandle):
 
     print "Loaded %s json records" % (dataRDD.count())
 
-    filteredResult = dataRDD.filter(lambda t: "body" in t).filter(lambda t: t['actor']['preferredUsername']=='twitterhandle').map(lambda t: gnip_2_csv(t))
+    filteredResult = dataRDD.filter(lambda t: "body" in t).filter(lambda t: t['actor']['preferredUsername']==twitterhandle).map(lambda t: gnip_2_csv(t))
         
     #save filtered result into files
-    #filteredResult.saveAsTextFile(outputfilepath + "/" + "twitterhandle")
+    filteredResult.saveAsTextFile(outputfilepath + "/" + twitterhandle)
 
     print filteredResult.count()
 
