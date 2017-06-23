@@ -11,14 +11,17 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 - [x] (java) Twitter API Key Resoure Control by managing the concurrency and locking mechanism to maximize the rate litmit utilization
 - [x] (java) Executor Thread pool to submit concurrent tasks
 - [x] (python) Random Sampling Account and then output as csv file in 01SamplingAccount folder
+- [x] (python) Read through full account list and then output as csv file in 01FullAccount folder
 - [x] (python) Compose a gnip query rule with interested accounts that aligning with rule limitations
 - [x] (python) Create a historical job that can sent to gnip
 - [x] (python) Generate csv files group by rule tags 
-- [ ] (spark) Generate json files group by rule tags (accerelate processing speed by parallelizing)
+- [x] (spark) Generate json/csv files group by rule tags (accerelate processing speed by parallelizing)
+- [x] (spark) Generate json/csv files filter by influencee account (accerelate processing speed by parallelizing)
 - [ ] (spark) Speark GraphX to analyze the social networking of random sampled followers
-- [ ] (python) To parse json files into csv files with selected fields.
+
 
 ## Language 
 
 Java (Concurrency, Twitter API)
 Python (Data Processing)
+Spark (Data Processing)
