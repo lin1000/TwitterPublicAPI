@@ -2,7 +2,7 @@
 
  
 ##   Configurations
-In this sample I will leave content of twitter4j.properties as dummy data. please replace the data in twitter4j.properties with your own and make sure the .jar and .properties in a same directory.
+In this sample, I will leave content of twitter4j.properties as dummy data. please replace the data in twitter4j.properties with your own and make sure the .jar and .properties in a same directory.
 
 ##  Feature List
 
@@ -16,9 +16,23 @@ In this sample I will leave content of twitter4j.properties as dummy data. pleas
 - [x] (python) Create a historical job that can sent to gnip
 - [x] (python) Generate csv files group by rule tags 
 - [x] (spark) Generate json/csv files group by rule tags (accerelate processing speed by parallelizing)
+```
+spark-submit --master "local[*]" --executor-memory 2G --total-executor-cores 20 06GNIPDataGroupByRuleTag-Spark.py > 06GNIPDataGroupByRuleTag-Spark.log 2>&1 
+```
 - [x] (spark) Generate json/csv files filter by influencee account (accerelate processing speed by parallelizing)
 - [ ] (spark) Speark GraphX to analyze the social networking of random sampled followers
 
+- [x] (java8) CountTweets
+```
+export MAVEN_OPTS="-ea"
+mvn exec:java@0002 -Dexec.args="./output/collect-follower-day4/modelpress.followers.json Scanner"
+```
+
+- [x] (java8) CountTweetsParaller : Use parallels stream to parse json object 
+```
+export MAVEN_OPTS="-ea"
+ mvn exec:java@0003 -Dexec.args="./output/collect-follower-day4/modelpress.followers.json Parallels"
+```
 
 ## Language 
 
