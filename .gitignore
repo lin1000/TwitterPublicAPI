@@ -36,3 +36,7 @@ src/main/resources/twitter4j\.properties
 
 #python
 *.pyc
+
+#nodejs
+.env
+node_modules

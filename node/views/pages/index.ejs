@@ -1,0 +1,42 @@
+<!-- views/pages/index.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../comps/head %>
+</head>
+<body class="container">
+
+    <header>
+        <% include ../comps/header %>
+    </header>
+
+    <main>
+        <div class="jumbotron">
+            <h1>Twitter Visualization </h1>
+            <p><%= tagline %></p>
+
+            <h2>Loop</h2>
+            <ul>
+                <% drinks.forEach(function(drink) { %>
+                    <li><%= drink.name %> - <%= drink.drunkness %></li>
+                <% }); %>
+            </ul>
+
+        </div>
+
+        <div>
+            
+            <div id="map"></div>
+            <div id="menu"></div>
+            <% include ../comps/mapbox %>
+
+        </div>
+    </main>
+
+    <footer>
+        <% include ../comps/footer %>
+    </footer>
+
+</body>
+</html>

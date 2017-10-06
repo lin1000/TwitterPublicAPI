@@ -93,6 +93,10 @@ public class CountTweetsParallel{
                 try {
                     listJsonObject = countTweetsParallel.readLargerTextFile(pathToInputFile);
                     System.out.println("Lines : " + listJsonObject.size());
+
+                    Integer total = listJsonObject.stream().map(x->1).reduce(0,(x,y)->(x+y));
+                    System.out.println("Reducer Counted Total : " + total);
+
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
