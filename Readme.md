@@ -36,6 +36,14 @@ export MAVEN_OPTS="-ea"
 
 - [ ] (node v6) Mapbox visualization on followers home locations 
 
+## Utility
+
+- [ ] (java8) Utility Class that getting directories and files resursively using stream. Here, in order to **handle checked exception in stream chain** , Throwables.propagate(e) in google guava library was used.
+```
+mvn exec:java@0004 
+```
+
+
 ## Languages
 
 Java (Stream, Concurrency, Twitter API)
