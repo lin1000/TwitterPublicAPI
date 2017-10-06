@@ -34,11 +34,11 @@ export MAVEN_OPTS="-ea"
  mvn exec:java@0003 -Dexec.args="./output/collect-follower-day4/modelpress.followers.json Parallels"
 ```
 
-- [ ] (HTML) Mapbox visualization on followers home location 
+- [ ] (node v6) Mapbox visualization on followers home locations 
 
 ## Languages
 
 Java (Stream, Concurrency, Twitter API)
 Python (Data Processing)
 Spark (Data Processing)
-HTML (Mapbox)
+Node V6 (Mapbox Visualization)
