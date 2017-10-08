@@ -45,6 +45,10 @@ In this sample, I will leave content of twitter4j.properties as dummy data. plea
   mvn exec:java@0004
   ```
 
+## GitBook 
+
+* Adding GitBook Integration \(experimental\)
+
 ## Languages
 
 Java \(Stream, Concurrency, Twitter API\)  
