@@ -4,17 +4,19 @@
 <html lang="en">
 <head>
     <% include ../comps/head %>
+
 </head>
 <body class="container">
 
     <header>
         <% include ../comps/header %>
+        <% include ../comps/script_index %>
     </header>
 
     <main>
         <div class="jumbotron">
-            <h1>Twitter Visualization </h1>
-            <p><%= tagline %></p>
+            <h1><%= city.cityHeadLine %> </h1>
+            <p><%= "City Event Summary :" + JSON.stringify(city.cityEventSummary, null, 2) %></p>
 
             <h2>Loop</h2>
             <ul>
@@ -22,11 +24,9 @@
                     <li><%= drink.name %> - <%= drink.drunkness %></li>
                 <% }); %>
             </ul>
-
         </div>
 
         <div>
-            
             <div id="map"></div>
             <div id="menu"></div>
             <% include ../comps/mapbox %>
@@ -37,6 +37,5 @@
     <footer>
         <% include ../comps/footer %>
     </footer>
-
 </body>
 </html>

@@ -1,0 +1,18 @@
+<script>
+    var request = $.ajax({
+        url: 'https://gist.githubusercontent.com/lin1000/ebecea98912bbb415690e393c75a00e9/raw/ba39c116016e03b117409011af0eff20376e3008/gistfile1.txt',
+        type: 'GET',
+        cache: false, 
+        //beforeSend: function (jqXHR) {
+        //  jqXHR.setRequestHeader('Accepts-Language', 'en-US,en');
+        //}
+      });    
+       
+      request.done(function( msg ) {
+        $( "#log" ).html( msg );
+      });
+       
+      request.fail(function( jqXHR, textStatus ) {
+        $( "#log" ).html( "Error Loading Gist" + textStatus );
+      });      
+</script>
